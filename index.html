@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Gold — Подарочные золотые слитки</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #C6A84E;
+            --gold-light: #E8D48B;
+            --gold-dark: #9A7B2D;
+            --black: #0A0A0A;
+            --black-card: #151515;
+            --black-elevated: #1C1C1C;
+            --white: #F5F0E8;
+            --text-body: #A8A090;
+            --text-muted: #6A6458;
+            --border: rgba(198, 168, 78, 0.12);
+            --font-display: 'Cormorant Garamond', serif;
+            --font-body: 'Raleway', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--black);
+            color: var(--text-body);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ═══════ CONTAINER ═══════ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ═══════ HEADER ═══════ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.05em;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-cta {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-decoration: none;
+            padding: 10px 24px;
+            border: 1px solid rgba(198, 168, 78, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .header-cta:hover {
+            background: rgba(198, 168, 78, 0.08);
+            border-color: var(--gold);
+        }
+
+        /* ═══════ HERO ═══════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(198, 168, 78, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid rgba(198, 168, 78, 0.25);
+            padding: 8px 20px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--text-body);
+            line-height: 1.8;
+            max-width: 500px;
+            margin: 0 auto 48px;
+        }
+
+        .hero-image {
+            margin-top: 60px;
+        }
+
+        .hero-image img {
+            max-width: 400px;
+            width: 100%;
+            border-radius: 4px;
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.5));
+        }
+
+        /* ═══════ SECTION COMMON ═══════ */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.25;
+            margin-bottom: 20px;
+        }
+
+        .section-desc {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--text-body);
+            max-width: 500px;
+            line-height: 1.8;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            margin: 0 auto;
+        }
+
+        /* ═══════ PRODUCTS GRID ═══════ */
+        .products {
+            padding: 80px 0 120px;
+        }
+
+        .products-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .products-header .section-desc {
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .product-card {
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .product-card:hover {
+            border-color: rgba(198, 168, 78, 0.25);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-card:hover::after {
+            opacity: 1;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            margin-bottom: 16px;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.04);
+        }
+
+        .product-name {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .product-occasion {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+        }
+
+        .product-price {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .product-price span {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .btn-buy {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--gold);
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 1px solid rgba(198, 168, 78, 0.25);
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-buy:hover {
+            background: rgba(198, 168, 78, 0.1);
+            border-color: var(--gold);
+        }
+
+        /* ═══════ ABOUT ═══════ */
+        .about {
+            padding: 100px 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.9);
+        }
+
+        .about-features {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .about-features li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            gap: 16px;
+            align-items: baseline;
+        }
+
+        .about-features li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-num {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--gold);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.6;
+        }
+
+        .feature-text strong {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        /* ═══════ HOW IT WORKS ═══════ */
+        .how {
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .how-header {
+            margin-bottom: 64px;
+        }
+
+        .how-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
+            padding: 40px 24px;
+        }
+
+        .step-num {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 400;
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .step-title {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .step-text {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ═══════ CTA SECTION ═══════ */
+        .cta {
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(198, 168, 78, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-main {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--black);
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+            text-decoration: none;
+            padding: 18px 48px;
+            margin-top: 40px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-main:hover {
+            filter: brightness(1.1);
+            box-shadow: 0 8px 30px rgba(198, 168, 78, 0.25);
+        }
+
+        /* ═══════ FOOTER ═══════ */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-logo span {
+            background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* ═══════ RESPONSIVE ═══════ */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .how-steps {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .product-card {
+                padding: 12px;
+            }
+
+            .product-name {
+                font-size: 1rem;
+            }
+
+            .product-price {
+                font-size: 1rem;
+            }
+
+            .btn-buy {
+                font-size: 0.65rem;
+                padding: 6px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .product-card {
+                padding: 8px;
+            }
+
+            .product-name {
+                font-size: 0.9rem;
+            }
+
+            .product-occasion {
+                font-size: 0.65rem;
+                margin-bottom: 10px;
+            }
+
+            .product-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">Happy <span>Gold</span></div>
+            <a href="#catalog" class="header-cta">Каталог</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Золото 985 пробы · 1 грамм</div>
+            <h1>Грамм настоящего золота<br>в подарочной <em>открытке</em></h1>
+            <p class="hero-sub">Оригинальный подарок, который выбирается за 2 минуты и запоминается навсегда</p>
+            <a href="#catalog" class="btn-main">Смотреть коллекцию</a>
+            <div class="hero-image">
+                <img src="cards/birthday_v1_premium.png" alt="Happy Gold — подарочная открытка с золотым слитком">
+            </div>
+        </div>
+    </section>
+
+    <!-- CATALOG -->
+    <section class="products" id="catalog">
+        <div class="container">
+            <div class="products-header">
+                <div class="section-label">Коллекция</div>
+                <h2 class="section-title">Открытка на каждый повод</h2>
+                <p class="section-desc">12 тематических дизайнов. Внутри каждой — слиток настоящего золота 985 пробы весом 1 грамм.</p>
+            </div>
+            <div class="products-grid">
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="С Днём Рождения">
+                    </div>
+                    <div class="product-name">С Днём Рождения</div>
+                    <div class="product-occasion">Праздник</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="For You">
+                    </div>
+                    <div class="product-name">For You</div>
+                    <div class="product-occasion">Универсальный</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="С Новым Годом">
+                    </div>
+                    <div class="product-name">С Новым Годом</div>
+                    <div class="product-occasion">Праздник</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="Thank You">
+                    </div>
+                    <div class="product-name">Thank You</div>
+                    <div class="product-occasion">Благодарность</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="На Удачу">
+                    </div>
+                    <div class="product-name">На Удачу</div>
+                    <div class="product-occasion">Пожелание</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="8 Марта">
+                    </div>
+                    <div class="product-name">8 Марта</div>
+                    <div class="product-occasion">Праздник</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="23 Февраля">
+                    </div>
+                    <div class="product-name">23 Февраля</div>
+                    <div class="product-occasion">Праздник</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="I Love You">
+                    </div>
+                    <div class="product-name">I Love You</div>
+                    <div class="product-occasion">Чувства</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="Be Happy">
+                    </div>
+                    <div class="product-name">Be Happy</div>
+                    <div class="product-occasion">Пожелание</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="Подарочный">
+                    </div>
+                    <div class="product-name">Подарочный</div>
+                    <div class="product-occasion">Универсальный</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="С Днём Свадьбы">
+                    </div>
+                    <div class="product-name">С Днём Свадьбы</div>
+                    <div class="product-occasion">Праздник</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="cards/birthday_v1_premium.png" alt="Первый Грамм">
+                    </div>
+                    <div class="product-name">Первый Грамм</div>
+                    <div class="product-occasion">Рождение ребёнка</div>
+                    <div class="product-bottom">
+                        <div class="product-price">12 000 <span>₽</span></div>
+                        <button class="btn-buy">Авито</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="cards/birthday_v1_premium.png" alt="Happy Gold — детали">
+                </div>
+                <div class="about-content">
+                    <div class="section-label">О продукте</div>
+                    <h2 class="section-title">Золото, оформленное<br>со вкусом</h2>
+                    <p class="section-desc">Каждая открытка — это слиток настоящего золота 985 пробы в авторском дизайне. Подарок, который не теряет ценности.</p>
+                    <ul class="about-features">
+                        <li>
+                            <span class="feature-num">01</span>
+                            <span class="feature-text"><strong>Золото 985 пробы</strong> — один грамм чистого золота в каждой открытке</span>
+                        </li>
+                        <li>
+                            <span class="feature-num">02</span>
+                            <span class="feature-text"><strong>Модульная система</strong> — слиток легко извлекается, открытку можно сменить</span>
+                        </li>
+                        <li>
+                            <span class="feature-num">03</span>
+                            <span class="feature-text"><strong>12 дизайнов</strong> — на любой повод, от дня рождения до рождения ребёнка</span>
+                        </li>
+                        <li>
+                            <span class="feature-num">04</span>
+                            <span class="feature-text"><strong>Реальная ценность</strong> — не сувенир, а настоящее золото, которое можно сохранить</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how">
+        <div class="container">
+            <div class="how-header">
+                <div class="section-label">Как это работает</div>
+                <h2 class="section-title">Три простых шага</h2>
+            </div>
+            <div class="how-steps">
+                <div class="step">
+                    <div class="step-num">I</div>
+                    <div class="step-title">Выберите дизайн</div>
+                    <p class="step-text">Подберите открытку под повод — день рождения, благодарность, праздник или просто так</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">II</div>
+                    <div class="step-title">Оформите заказ</div>
+                    <p class="step-text">Закажите через Авито — быстрая и безопасная сделка с гарантией площадки</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">III</div>
+                    <div class="step-title">Вручите подарок</div>
+                    <p class="step-text">Получатель откроет открытку и увидит настоящее золото. Эмоции гарантированы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <div class="section-label">Happy Gold</div>
+                <h2 class="section-title">Подарок, который<br>запоминается навсегда</h2>
+                <p class="section-desc" style="margin: 0 auto;">Грамм золота в подарочной открытке — оригинально, солидно и со вкусом</p>
+                <a href="#catalog" class="btn-main">Выбрать открытку</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Happy <span>Gold</span></div>
+            <p class="footer-text">Подарочные золотые слитки · Золото 985 пробы</p>
+        </div>
+    </footer>
+
+</body>
+</html>
